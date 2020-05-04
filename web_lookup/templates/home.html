@@ -1,8 +1,27 @@
 
-
+{% extends 'base.html' %}
 
 {%  block content %}
 
-<h1>Drishty && Khyaithy</h1>
+{% if zipcode %}
+   {{ zipcode }}
+{% endif %}
+
+
+{% if api %}
+   {% if api == "Error ....." %}
+      There was Error please try again......
+   {% else %}
+      <div class="jumbotron good">
+      <h1 class="display-4">{{ api.0.Category.Name }}</h1>
+      <p class="lead">{{ api.0.ReportingArea }}: {{ api.0.AQI }}</p>
+      <hr class="my-4">
+
+      <p>If you are unusually sensitive to particle pollution, consider reducing your activity level or shorten the amount of time you are active outdoors.</p>
+
+      </div>
+
+   {% endif %}
+{% endif %}
 
 {% endblock %}
